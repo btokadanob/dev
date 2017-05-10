@@ -54,7 +54,6 @@ public class AmazonS3ClientFactory {
             AmazonS3ClientBuilder s3builder = AmazonS3Client.builder();
             s3builder.setCredentials(new ClasspathPropertiesFileCredentialsProvider());
             s3builder.setRegion(Regions.US_EAST_1.getName());
-            s3builder.setClientConfiguration(conf);
             return s3builder;
         }
         
