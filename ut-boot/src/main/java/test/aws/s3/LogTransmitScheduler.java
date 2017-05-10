@@ -84,7 +84,7 @@ public class LogTransmitScheduler implements Runnable {
         }
     }
     /**
-     * AP停止時、または Dyno停止時（SIGTERM）で呼ばれるフック処理 現在日時のディレクトリ名でPutする
+     * AP停止時、またはherokuの場合は Dyno停止時（SIGTERM）で呼ばれるフック処理 現在日時のディレクトリ名でPutする
      */
     @PreDestroy
     public void shutdownHook() {

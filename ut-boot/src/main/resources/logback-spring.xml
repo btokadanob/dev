@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_ROOT_PATH" value="/tmp" />
+	<property name="FILE_NAME" value="log_app" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%date{yyyy-MM-dd HH:mm:ss,JST} [%-15.-15thread][%-5.5level][%-60.-60logger{60}\(%4line\)] - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="S3OUT" 
+		 class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_ROOT_PATH}/${FILE_NAME}.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%date{yyyy-MM-dd HH:mm:ss,JST} [%-15.-15thread][%-5.5level][%-60.-60logger{60}\(%4line\)] - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_ROOT_PATH}/${FILE_NAME}_%d.%i.rotate.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- Send logs to both console and file audit -->
+	<logger name="test.aws" level="debug" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="S3OUT" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="S3OUT" />	
+	</root>
+
+</configuration>

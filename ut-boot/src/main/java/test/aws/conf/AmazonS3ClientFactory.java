@@ -1,4 +1,4 @@
-package test.aws.s3;
+package test.aws.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

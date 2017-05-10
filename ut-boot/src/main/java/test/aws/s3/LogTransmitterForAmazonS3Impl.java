@@ -16,6 +16,8 @@ import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 
+import test.aws.conf.AmazonS3ClientFactory;
+
 /**
  * 
  * @author Administrator
