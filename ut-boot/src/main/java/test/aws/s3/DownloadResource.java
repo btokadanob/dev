@@ -20,4 +20,5 @@ public class DownloadResource implements Serializable {
     
     private byte[] data;
 
+    private String test;
 }
